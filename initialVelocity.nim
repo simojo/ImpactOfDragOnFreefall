@@ -3,19 +3,20 @@ from strutils import parseFloat
 import math
 import os
 
-const g = 9.81
+const g = 9.8
+const m = 0.5
 
-proc initialVelocityLessThanTV(m: float, D: float): float =
-  let v = sqrt((m * g) / D) - 2
-  return v
+proc initialVelocityLessThanTV(D: float): float =
+  let v = sqrt((m * g) / D)
+  return v - (v * 0.5)
 
-proc initialVelocityTV(m: float, D: float): float =
+proc initialVelocityTV(D: float): float =
   let v = sqrt((m * g) / D)
   return v
 
-proc initialVelocityGreaterThanTV(m: float, D: float): float =
-  let v = sqrt((m * g) / D) + 2
-  return v
+proc initialVelocityGreaterThanTV(D: float): float =
+  let v = sqrt((m * g) / D)
+  return v + (v * 0.5)
 
 proc coefDrag(A: float): float =
   let p = 1.139
@@ -24,9 +25,8 @@ proc coefDrag(A: float): float =
   return D
 
 let A = parseFloat(commandLineParams()[0])
-let m = parseFloat(commandLineParams()[1])
 
 let D = coefDrag(A)
-echo "v_o < TV: ", initialVelocityLessThanTV(m, D)
-echo "v_o = TV: ", initialVelocityTV(m, D)
-echo "v_o > TV: ", initialVelocityGreaterThanTV(m, D)
+echo "Less than TV: ", initialVelocityLessThanTV(D), " m/s"
+echo "Equal to TV: ", initialVelocityTV(D), " m/s"
+echo "Greater than TV: ", initialVelocityGreaterThanTV(D), " m/s"
