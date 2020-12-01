@@ -1,14 +1,11 @@
-# A
 from strutils import parseFloat
 import math
-import os
 
 const g = 9.8
 const m = 0.5
 let A_1 = 1.80
 let A_2 = 3.60 * pow(10.0, -2.0)
 let A_3 = 7.20 * pow(10.0, -4.0)
-let A = parseFloat(commandLineParams()[0])
 
 proc initialVelocityLessThanTV(D: float): float =
   let v = sqrt((m * g) / D)
@@ -32,7 +29,7 @@ proc maxHeight(v_0: float, D: float): float =
   let x_max = -1*m*ln((m*g)/(D*v_0^2+m*g))/(2*D)
   return x_max
 
-proc getInfoGivenCrossSection(A: float): float =
+proc getInfoGivenCrossSection(A: float) =
   let D = coefDrag(A)
   echo "A: ", A
   echo "D: ", D
@@ -55,6 +52,8 @@ proc getInfoGivenCrossSection(A: float): float =
   echo "  v_0:   ", gttv
   echo "  x_max: ", x3
 
-echo getInfoGivenCrossSection(A_1)
-echo getInfoGivenCrossSection(A_2)
-echo getInfoGivenCrossSection(A_3)
+  echo ""
+
+getInfoGivenCrossSection(A_1)
+getInfoGivenCrossSection(A_2)
+getInfoGivenCrossSection(A_3)
