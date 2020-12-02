@@ -1,5 +1,3 @@
-import plot
-
 type
   Sphere* = object
     Alias*: string
@@ -21,5 +19,3 @@ type
     x*: float
     y*: float
     metric*: Metric
-
-plotAll()

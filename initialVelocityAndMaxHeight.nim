@@ -84,3 +84,5 @@ proc start*(): seq[Sphere] =
     getInfoGivenCrossSection(A_3, "A_3")
   ]
 
+
+var disc = start()
