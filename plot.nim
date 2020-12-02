@@ -18,5 +18,3 @@ proc plotPath(readPath: string) =
 proc plotAll*() =
   for kind, path in walkDir(csvsDir):
     plotPath(path)
-
-plotAll()
