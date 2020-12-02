@@ -1,13 +1,19 @@
 # going up
-import ggplotnim, sequtils, seqmath, streams, math
+import ggplotnim,
+       sequtils,
+       seqmath,
+       math,
+       streams,
+       main
 
-const plotsDir = "plots/"
+proc plotSpeed(sphere): seq[DataPoint] =
+  return nil
 
-proc plotSpeed() =
-  let x = linspace(0.0, 30.0, 1000)
-  let y = x.mapIt(pow(sin(it), 2.0))
-  let df = seqsToDf(x, y)
-  ggplot(d)
+proc plotSpeed(sphere) =
+  return nil
+
+proc plotSpeed(sphere) =
+  return nil
 
 proc velocityGoingUp(x: float): float =
   let v = sqrt()

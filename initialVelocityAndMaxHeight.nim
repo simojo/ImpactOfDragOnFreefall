@@ -1,15 +1,11 @@
 import math
-import structs
+from main import Sphere, Situation, Relation
 
-const g = 9.8
+const g = 9.81
 const m = 0.5
 let A_1 = 1.80
 let A_2 = 3.60 * pow(10.0, -2.0)
 let A_3 = 7.20 * pow(10.0, -4.0)
-
-type
-  Sphere* = object
-    A*, D*, lttv*, tv*, gttv*, x1*, x2*, x3*: float
 
 proc initialVelocityLessThanTV(D: float): float =
   let v = sqrt((m * g) / D)
@@ -33,7 +29,7 @@ proc maxHeight(v_0: float, D: float): float =
   let x_max = -1*m*ln((m*g)/(D*v_0^2+m*g))/(2*D)
   return x_max
 
-proc getInfoGivenCrossSection(A: float): Sphere =
+proc getInfoGivenCrossSection(A: float, alias: string): Sphere =
   echo ""
   echo "---------------------"
   echo ""
@@ -59,19 +55,32 @@ proc getInfoGivenCrossSection(A: float): Sphere =
   echo "---------------------"
   echo ""
   return Sphere(
+    Alias: alias,
+    A: A,
     D: D,
-    lttv: lttv,
-    x1: x1,
-    tv: tv,
-    x2: x2,
-    gttv: gttv,
-    x3: x3
+    situations: @[
+      Situation(
+        v_0: lttv,
+        x_max: x1,
+        relation: Relation.LessThanTerminalVelocity
+      ),
+      Situation(
+        v_0: tv,
+        x_max: x2,
+        relation: Relation.TerminalVelocity
+      ),
+      Situation(
+        v_0: gttv,
+        x_max: x3,
+        relation: Relation.GreaterThanTerminalVelocity
+      )
+    ]
   )
 
 proc start*(): seq[Sphere] =
   return @[
-    getInfoGivenCrossSection(A_1),
-    getInfoGivenCrossSection(A_2),
-    getInfoGivenCrossSection(A_3)
+    getInfoGivenCrossSection(A_1, "A_1"),
+    getInfoGivenCrossSection(A_2, "A_2"),
+    getInfoGivenCrossSection(A_3, "A_3")
   ]
 
