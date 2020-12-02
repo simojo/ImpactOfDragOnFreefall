@@ -14,7 +14,7 @@ for f in os.listdir(CSVSPATH):
         plt.plot(x, y, label=label)
         plt.xlabel("Displacement (x)")
         plt.ylabel("Value")
-    title = (f[0:-4] + ".png").replace("_", " ").replace("Up", "Case 1").replace("Down", "Case 2")[0:-4]
+    title = (f[0:-4] + ".png").replace("_", " ").replace("Up", "Case 1 -").replace("Down", "Case 2 -")[0:-4]
     savePath = PLOTSPATH + title
     plt.title(title)
     plt.legend()
