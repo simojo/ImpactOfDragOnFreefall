@@ -79,7 +79,7 @@ proc getInfoGivenCrossSection(A: float, alias: string): object =
 
 proc getSituations*(): seq[Sphere] =
   return @[
-    getInfoGivenCrossSection(A_1, "A_1"),
-    getInfoGivenCrossSection(A_2, "A_2"),
-    getInfoGivenCrossSection(A_3, "A_3")
+    getInfoGivenCrossSection(A_1, "Object1"),
+    getInfoGivenCrossSection(A_2, "Object2"),
+    getInfoGivenCrossSection(A_3, "Object3")
   ]

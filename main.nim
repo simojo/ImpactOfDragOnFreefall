@@ -1,10 +1,7 @@
 import csv,
        goingDown,
        goingUp,
-       streams,
-       strformat,
        structs,
-       strutils,
        initialVelocityAndMaxHeight
 
 for sphere in getSituations():

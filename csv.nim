@@ -1,4 +1,4 @@
-import streams, strformat, strutils, main, structs
+import strformat, structs
 
 const csvsDir* = "csvs/"
 const sigDigs = 3
