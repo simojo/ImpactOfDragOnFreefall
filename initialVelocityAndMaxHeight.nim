@@ -4,8 +4,8 @@ from main import Sphere, Situation, Relation
 const g = 9.81
 const m = 0.5
 let A_1 = 1.80
-let A_2 = 3.60 * pow(10.0, -2.0)
-let A_3 = 7.20 * pow(10.0, -4.0)
+let A_2 = 3.60e-2
+let A_3 = 7.20e-4
 
 proc initialVelocityLessThanTV(D: float): float =
   let v = sqrt((m * g) / D)
