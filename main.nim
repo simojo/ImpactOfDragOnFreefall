@@ -1,26 +1,18 @@
-import initialVelocityAndMaxHeight
+import csv,
+       goingDown,
+       goingUp,
+       streams,
+       strformat,
+       structs,
+       strutils,
+       initialVelocityAndMaxHeight
 
-type
-  Sphere* = object
-    Alias*: string
-    A*: float
-    D*: float
-    situations*: seq[Situation]
-    direction*: Direction
-  Relation* = enum
-    LessThanTerminalVelocity, TerminalVelocity, GreaterThanTerminalVelocity
-  Situation* = object
-    v_0*: float
-    x_max*: float
-    relation*: Relation
-  Direction* = enum
-    Up, Down
-  Metric* = enum
-    Speed, KineticEnergy, PE, Work
-  DataPoint* = object
-    x*: float
-    y*: float
-    metric*: Metric
-
-for s in initialVelocityAndMaxHeight.start():
-  echo ""
+for sphere in getSituations():
+  let D = sphere.D
+  for situation in sphere.situations:
+    var dataPool: seq[DataPoint] = @[]
+    dataPool.add(dataSpeed(D, situation.v_0, situation.x_max))
+    dataPool.add(dataKineticEnergy(D, situation.v_0, situation.x_max))
+    dataPool.add(dataPotentialEnergy(D, situation.v_0, situation.x_max))
+    dataPool.add(dataWork(D, situation.v_0, situation.x_max))
+    writeToCSV(sphere.Alias, Direction.Up, situation.relation, dataPool)

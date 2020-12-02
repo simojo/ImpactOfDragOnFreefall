@@ -1,5 +1,5 @@
 import math
-from main import Sphere, Situation, Relation
+import structs
 
 const g = 9.81
 const m = 0.5
@@ -29,7 +29,7 @@ proc maxHeight(v_0: float, D: float): float =
   let x_max = -1*m*ln((m*g)/(D*v_0^2+m*g))/(2*D)
   return x_max
 
-proc getInfoGivenCrossSection(A: float, alias: string): Sphere =
+proc getInfoGivenCrossSection(A: float, alias: string): object =
   echo ""
   echo "---------------------"
   echo ""
@@ -77,7 +77,7 @@ proc getInfoGivenCrossSection(A: float, alias: string): Sphere =
     ]
   )
 
-proc start*(): seq[Sphere] =
+proc getSituations*(): seq[Sphere] =
   return @[
     getInfoGivenCrossSection(A_1, "A_1"),
     getInfoGivenCrossSection(A_2, "A_2"),
