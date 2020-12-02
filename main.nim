@@ -1,3 +1,5 @@
+import initialVelocityAndMaxHeight
+
 type
   Sphere* = object
     Alias*: string
@@ -19,3 +21,6 @@ type
     x*: float
     y*: float
     metric*: Metric
+
+for s in initialVelocityAndMaxHeight.start():
+  echo ""
