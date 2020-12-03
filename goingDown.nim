@@ -45,7 +45,7 @@ proc dataPotentialEnergy*(D: float, x_max: float): seq[DataPoint] =
 proc dataWork*(D: float, x_max: float): seq[DataPoint] =
   let domain = getDomain(x_max)
   let range = domain.map(x =>
-    x # FIXME
+    m*g*(x-x_max)-m^2*g/(2*D)*(pow(E, 2*D*(x-x_max)/m)-1)
   )
   return turnIntoDataPoints(domain, range, Metric.Work)
 
