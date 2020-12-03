@@ -5,8 +5,6 @@ const m = 0.5
 const g = 9.81
 const n = 100
 
-# FIXME: need to rework this for going down
-
 proc getDomain(x_max: float): seq[float] =
   let step = x_max / n
   var i = x_max

@@ -8,6 +8,7 @@ XLABEL = "Displacement (x)"
 YLABEL = "Value"
 
 for f in os.listdir(CSVSPATH):
+    ## plotting
     domain = []
     df = pandas.read_csv(CSVSPATH + f)
     metrics = df.groupby("metric")
@@ -19,16 +20,31 @@ for f in os.listdir(CSVSPATH):
         plt.xlabel(XLABEL)
         plt.ylabel(YLABEL)
         if "Down" in f:
-            # plt.axis([max(x), min(x), min(y), max(y)])
             plt.xlim(max(x), min(x))
-    title = (f[0:-4] + ".png").replace("_", " ").replace("Up", "Case 1 -").replace("Down", "Case 2 -")[0:-4]
-    savePath = PLOTSPATH + title
+    ## /plotting
+
+    ## parsing
+    text = f[0:-4]
+    words = text.split("_")
+    direction = words[0].replace("Up", "Case 1").replace("Down", "Case 2")
+    alias = words[1]
+    velocityType = words[2]
+    v_0 = "{:.2e}".format(float(words[3])).replace("+", "").replace("e00", "")
+    ## /parsing
+
+    ## title
+    title = f"{direction} - {alias} - {velocityType} (Initial v: {v_0})"
+    ## /title
+
+    ## saving
+    savePath = f"{PLOTSPATH}{title}.png".replace(" ", "")
     plt.title(title)
     plt.legend()
     plt.savefig(savePath)
     plt.clf()
     plt.cla()
     plt.close()
+    ## /saving
 
 # x = range(1,10)
 # plt.plot(x, [xi*1 for xi in x])
