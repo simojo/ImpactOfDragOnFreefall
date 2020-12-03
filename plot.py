@@ -45,9 +45,3 @@ for f in os.listdir(CSVSPATH):
     plt.cla()
     plt.close()
     ## /saving
-
-# x = range(1,10)
-# plt.plot(x, [xi*1 for xi in x])
-# plt.plot(x, [xi*2 for xi in x])
-# plt.plot(x, [xi*3 for xi in x])
-# plt.savefig("test.png")
