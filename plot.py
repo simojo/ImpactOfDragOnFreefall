@@ -4,16 +4,23 @@ import os
 
 CSVSPATH = "csvs/"
 PLOTSPATH = "plots/"
+XLABEL = "Displacement (x)"
+YLABEL = "Value"
 
 for f in os.listdir(CSVSPATH):
+    domain = []
     df = pandas.read_csv(CSVSPATH + f)
     metrics = df.groupby("metric")
     for label, group in metrics:
         x = group["x"].tolist()
         y = group["y"].tolist()
+        domain = x
         plt.plot(x, y, label=label)
-        plt.xlabel("Displacement (x)")
-        plt.ylabel("Value")
+        plt.xlabel(XLABEL)
+        plt.ylabel(YLABEL)
+        if "Down" in f:
+            # plt.axis([max(x), min(x), min(y), max(y)])
+            plt.xlim(max(x), min(x))
     title = (f[0:-4] + ".png").replace("_", " ").replace("Up", "Case 1 -").replace("Down", "Case 2 -")[0:-4]
     savePath = PLOTSPATH + title
     plt.title(title)

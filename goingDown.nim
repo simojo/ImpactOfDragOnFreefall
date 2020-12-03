@@ -13,6 +13,7 @@ proc getDomain(x_max: float): seq[float] =
   while i >= 0:
     result.add(i)
     i -= step
+  result[len(result) - 1] = 0.0
 
 proc turnIntoDataPoints(x: seq[float], y: seq[float], metric: Metric): seq[DataPoint] =
   var i = 0
@@ -23,14 +24,14 @@ proc turnIntoDataPoints(x: seq[float], y: seq[float], metric: Metric): seq[DataP
 proc dataSpeed*(D: float, x_max: float): seq[DataPoint] =
   let domain = getDomain(x_max)
   let range = domain.map(x =>
-    x # FIXME
+    sqrt(m*g/D*(1-pow(E, 2*D/m*(x-x_max))))
   )
   return turnIntoDataPoints(domain, range, Metric.Speed)
 
 proc dataKineticEnergy*(D: float, x_max: float): seq[DataPoint] =
   let domain = getDomain(x_max)
   let range = domain.map(x =>
-    x # FIXME
+    0.5*m*(m*g/D*(1-pow(E, 2*D/m*(x-x_max))))
   )
   return turnIntoDataPoints(domain, range, Metric.KineticEnergy)
 
