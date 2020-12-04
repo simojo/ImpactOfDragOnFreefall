@@ -5,3 +5,6 @@
 This program models the impact of drag on the **speed**, **kinetic energy**, **potential energy**, and **work of drag** of an object as it travels **up** and **down** in its freefall.
 
 ![Example](https://github.com/simojo/impactOfDragOnFreefall/blob/master/plots/DownDrag-Object1-GreaterThanTerminalVelocity(Initialv:4.79).png)
+![Example](https://github.com/simojo/impactOfDragOnFreefall/blob/master/plots/DownNoDrag-Object1-GreaterThanTerminalVelocity(Initialv:4.79).png)
+![Example](https://github.com/simojo/impactOfDragOnFreefall/blob/master/plots/UpDrag-Object1-GreaterThanTerminalVelocity(Initialv:4.79).png)
+![Example](https://github.com/simojo/impactOfDragOnFreefall/blob/master/plots/UpNoDrag-Object1-GreaterThanTerminalVelocity(Initialv:4.79).png)
