@@ -1,11 +1,6 @@
-import math
-import structs
-
-const g = 9.81
-const m = 0.5
-let A_1 = 1.80
-let A_2 = 3.60e-2
-let A_3 = 7.20e-4
+import math,
+       structs,
+       data
 
 proc initialVelocityLessThanTV(D: float): float =
   let v = sqrt((m * g) / D)

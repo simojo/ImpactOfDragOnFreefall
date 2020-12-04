@@ -10,8 +10,8 @@ type
     v_0*: float
     x_max*: float
     relation*: Relation
-  Direction* = enum
-    Up, Down
+  DirectionDrag* = enum
+    UpDrag, UpNoDrag, DownDrag, DownNoDrag
   Metric* = enum
     Speed, KineticEnergy, PotentialEnergy, Work
   DataPoint* = object
