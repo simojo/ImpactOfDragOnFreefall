@@ -12,6 +12,10 @@ const A_3* = 7.20e-4
 proc turnIntoDataPoints*(x: seq[float], y: seq[float], metric: Metric): seq[DataPoint] =
   var i = 0
   for item in x:
-    result.add(DataPoint(x: x[i], y: y[i], metric: metric))
+    let thisX = x[i]
+    var thisY = y[i]
+    if y[i] == Nan:
+      thisY = 0.0
+    result.add(DataPoint(x: thisX, y: thisY, metric: metric))
     i += 1
 
