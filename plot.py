@@ -21,27 +21,24 @@ for f in os.listdir(CSVSPATH):
         plt.ylabel(YLABEL)
         if "Down" in f:
             plt.xlim(max(x), min(x))
-    ## /plotting
 
     ## parsing
     text = f[0:-4]
     words = text.split("_")
-    direction = words[0].replace("Up", "Case 1").replace("Down", "Case 2")
+    direction = words[0].replace("Up", "Up ").replace("Down", "Down ")
     alias = words[1]
     velocityType = words[2]
     v_0 = "{:.2e}".format(float(words[3])).replace("+", "").replace("e00", "")
-    ## /parsing
 
     ## title
-    title = f"{direction} - {alias} - {velocityType} (Initial v: {v_0})"
-    ## /title
+    title = f"{direction} - {alias} - {velocityType}\n(Initial v: {v_0})"
 
     ## saving
-    savePath = f"{PLOTSPATH}{title}.png".replace(" ", "")
+    savePath = f"{PLOTSPATH}{title}.png".replace("\n", "").replace(" ", "")
     plt.title(title)
     plt.legend()
+    plt.grid(True)
     plt.savefig(savePath)
     plt.clf()
     plt.cla()
     plt.close()
-    ## /saving

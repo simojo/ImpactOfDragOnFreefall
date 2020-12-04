@@ -23,7 +23,7 @@ for sphere in getSituations():
     dataPoolUpNoDrag.add(goingUpNoDrag.dataSpeed(domainUp, situation.v_0))
     dataPoolUpNoDrag.add(goingUpNoDrag.dataKineticEnergy(domainUp, situation.v_0))
     dataPoolUpNoDrag.add(goingUpNoDrag.dataPotentialEnergy(domainUp, situation.v_0))
-    writeToCSV(sphere.Alias, DirectionDrag.UpNoDrag, situation.relation, dataPoolUpDrag, situation.v_0)
+    writeToCSV(sphere.Alias, DirectionDrag.UpNoDrag, situation.relation, dataPoolUpNoDrag, situation.v_0)
 
     ## Going Down - Drag
     var dataPoolDownDrag: seq[DataPoint] = @[]
@@ -39,4 +39,4 @@ for sphere in getSituations():
     dataPoolDownNoDrag.add(goingDownNoDrag.dataSpeed(domainDown, situation.x_max))
     dataPoolDownNoDrag.add(goingDownNoDrag.dataKineticEnergy(domainDown, situation.x_max))
     dataPoolDownNoDrag.add(goingDownNoDrag.dataPotentialEnergy(domainDown, situation.x_max))
-    writeToCSV(sphere.Alias, DirectionDrag.DownNoDrag, situation.relation, dataPoolUpDrag, situation.v_0)
+    writeToCSV(sphere.Alias, DirectionDrag.DownNoDrag, situation.relation, dataPoolDownNoDrag, situation.v_0)
