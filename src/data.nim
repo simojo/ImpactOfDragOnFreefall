@@ -14,7 +14,7 @@ proc turnIntoDataPoints*(x: seq[float], y: seq[float], metric: Metric): seq[Data
   for item in x:
     let thisX = x[i]
     var thisY = y[i]
-    if y[i] == Nan:
+    if $y[i] == "nan":
       thisY = 0.0
     result.add(DataPoint(x: thisX, y: thisY, metric: metric))
     i += 1
