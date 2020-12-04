@@ -13,7 +13,7 @@ type
   DirectionDrag* = enum
     UpDrag, UpNoDrag, DownDrag, DownNoDrag
   Metric* = enum
-    Speed, KineticEnergy, PotentialEnergy, Work
+    Speed, KineticEnergy, PotentialEnergy, WorkOfDrag
   DataPoint* = object
     x*: float
     y*: float

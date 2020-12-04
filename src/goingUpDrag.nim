@@ -30,5 +30,5 @@ proc dataWork*(domain: seq[float], D: float, v_0: float): seq[DataPoint] =
   let range = domain.map(x =>
     m*g*(x)+m/(2*D)*((D*v_0^2+m*g)*(pow(E, -2*D*(x)/m)-1))
   )
-  return turnIntoDataPoints(domain, range, Metric.Work)
+  return turnIntoDataPoints(domain, range, Metric.WorkOfDrag)
 
