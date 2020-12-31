@@ -1,7 +1,7 @@
 { pkgs ? import (fetchTarball https://git.io/Jf0cc) {} }:
 
 let
-  shellname = "python";
+  shellname = "drag";
   mach-nix = import (
   builtins.fetchGit {
       url = "https://github.com/DavHau/mach-nix/";
@@ -17,11 +17,13 @@ let
       matplotlib
     '';
   };
+  myRust = with pkgs; [ rustc cargo rustfmt ];
 in
   pkgs.mkShell {
     name = shellname;
     buildInputs = [
       mods
+      myRust
       pkgs.nim
       pkgs.cairo
     ];
