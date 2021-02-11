@@ -24,8 +24,8 @@ in
     buildInputs = [
       mods
       myRust
-      pkgs.nim
-      pkgs.cairo
+      pkgs.unstable.nim
+      pkgs.unstable.cairo
     ];
     shellHook = ''
       export NIX_SHELL_NAME='${shellname}'
