@@ -1,4 +1,4 @@
-{ pkgs ? import (fetchTarball https://git.io/Jf0cc) {} }:
+{ pkgs ? import <unstable> {} }:
 
 let
   shellname = "drag";
@@ -13,8 +13,8 @@ let
     python = pkgs.python38;
     requirements = ''
       pandas
-      plotly
       matplotlib
+      arcade
     '';
   };
   myRust = with pkgs; [ rustc cargo rustfmt ];
@@ -24,8 +24,7 @@ in
     buildInputs = [
       mods
       myRust
-      pkgs.unstable.nim
-      pkgs.unstable.cairo
+      pkgs.nim
     ];
     shellHook = ''
       export NIX_SHELL_NAME='${shellname}'
