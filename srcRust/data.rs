@@ -28,9 +28,8 @@ pub const A_1: f32 = 1.80;
 pub const A_2: f32 = 3.60e-2;
 pub const A_3: f32 = 4.20e-4;
 
-pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>) -> Vec<f32> {
-    // FIXME: make this a datapoint struct
-    let mut result = Vec::<f32>::new();
+pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>, metric: structs::Metric) -> Vec<structs::DataPoint> {
+    let mut result = Vec::<structs::DataPoint>::new();
     let mut i = 0;
     for item in &x {
         let thisX = x[i];
@@ -38,12 +37,16 @@ pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>) -> Vec<f32> {
         if y[i].to_string() == "nan" {
             thisY = 0.0;
         }
-        result.push(i as f32);
+        result.push(structs::DataPoint {
+            x: thisX,
+            y: thisY,
+            metric: metric.clone(),
+        });
         i += 1;
     }
     result
 }
 
 fn main() {
-    println!("{:?}", turnIntoDataPoints(vec![0.0, 1.2, 3.2], vec![0.0, 1.2, 3.2]));
+    println!("done");
 }
