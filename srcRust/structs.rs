@@ -45,7 +45,6 @@ pub enum DirectionDrag {
     DownNoDrag,
 }
 
-#[derive(Copy,Clone)]
 pub enum Metric {
     Speed,
     KineticEnergy,

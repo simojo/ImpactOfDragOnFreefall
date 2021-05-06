@@ -28,10 +28,11 @@ pub const A_1: f32 = 1.80;
 pub const A_2: f32 = 3.60e-2;
 pub const A_3: f32 = 4.20e-4;
 
+// FIXME: metric needs to be an immutable reference, but requires a lifetime param
 pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>, metric: structs::Metric) -> Vec<structs::DataPoint> {
     let mut result = Vec::<structs::DataPoint>::new();
     let mut i = 0;
-    for item in &x {
+    for _item in &x {
         let thisX = x[i];
         let mut thisY = y[i];
         if y[i].to_string() == "nan" {
@@ -40,7 +41,7 @@ pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>, metric: structs::Metric) -> 
         result.push(structs::DataPoint {
             x: thisX,
             y: thisY,
-            metric: metric.clone(),
+            metric: metric,
         });
         i += 1;
     }
@@ -48,5 +49,9 @@ pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>, metric: structs::Metric) -> 
 }
 
 fn main() {
-    println!("done");
+    turnIntoDataPoints(
+        Vec::<f32>::new(),
+        Vec::<f32>::new(),
+        structs::Metric::Speed
+    );
 }
