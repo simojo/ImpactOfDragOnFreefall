@@ -21,12 +21,3 @@ pub fn turn_into_data_points(xs: Vec<f32>, ys: Vec<f32>, metric: &structs::Metri
         })
         .collect::<Vec<structs::DataPoint>>()
 }
-
-fn main() {
-    let points = turn_into_data_points(
-        vec![5.0, 6.0, 10.0],
-        vec![10.0, 20.0, 100.0],
-        &structs::Metric::Speed
-    );
-    println!("{:?}", points)
-}
