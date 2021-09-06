@@ -1,24 +1,3 @@
-// import structs
-
-// ## globals
-// const m* = 0.5
-// const g* = 9.81
-// const n* = 100
-// const A_1* = 1.80
-// const A_2* = 3.60e-2
-// const A_3* = 7.20e-4
-
-// ## procs
-// proc turnIntoDataPoints*(x: seq[float], y: seq[float], metric: Metric): seq[DataPoint] =
-//   var i = 0
-//   for item in x:
-//     let thisX = x[i]
-//     var thisY = y[i]
-//     if $y[i] == "nan":
-//       thisY = 0.0
-//     result.add(DataPoint(x: thisX, y: thisY, metric: metric))
-//     i += 1
-
 mod structs;
 
 pub const m: f32 = 0.5;
@@ -28,30 +7,26 @@ pub const A_1: f32 = 1.80;
 pub const A_2: f32 = 3.60e-2;
 pub const A_3: f32 = 4.20e-4;
 
-// FIXME: metric needs to be an immutable reference, but requires a lifetime param
-pub fn turnIntoDataPoints(x: Vec<f32>, y: Vec<f32>, metric: structs::Metric) -> Vec<structs::DataPoint> {
-    let mut result = Vec::<structs::DataPoint>::new();
-    let mut i = 0;
-    for _item in &x {
-        let thisX = x[i];
-        let mut thisY = y[i];
-        if y[i].to_string() == "nan" {
-            thisY = 0.0;
-        }
-        result.push(structs::DataPoint {
-            x: thisX,
-            y: thisY,
-            metric: metric,
-        });
-        i += 1;
-    }
-    result
+pub fn turn_into_data_points(xs: Vec<f32>, ys: Vec<f32>, metric: &structs::Metric) -> Vec<structs::DataPoint> {
+    xs
+        .iter()
+        .zip(ys
+            .into_iter()
+            .map(|y| if y.to_string() == "nan" { 0.0 } else { y }))
+        .map(|xy| structs::DataPoint {
+            // FIXME: I have no idea why I must dereference this, look into later
+            x: *xy.0,
+            y: xy.1,
+            metric: metric
+        })
+        .collect::<Vec<structs::DataPoint>>()
 }
 
 fn main() {
-    turnIntoDataPoints(
-        Vec::<f32>::new(),
-        Vec::<f32>::new(),
-        structs::Metric::Speed
+    let points = turn_into_data_points(
+        vec![5.0, 6.0, 10.0],
+        vec![10.0, 20.0, 100.0],
+        &structs::Metric::Speed
     );
+    println!("{:?}", points)
 }

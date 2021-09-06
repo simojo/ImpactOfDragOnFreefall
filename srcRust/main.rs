@@ -40,3 +40,12 @@
 //     dataPoolDownNoDrag.add(goingDownNoDrag.dataKineticEnergy(domainDown, situation.x_max))
 //     dataPoolDownNoDrag.add(goingDownNoDrag.dataPotentialEnergy(domainDown, situation.x_max))
 //     writeToCSV(sphere.Alias, DirectionDrag.DownNoDrag, situation.relation, dataPoolDownNoDrag, situation.v_0)
+
+fn main() {
+    let points = turn_into_data_points(
+        vec![5.0, 6.0, 10.0],
+        vec![10.0, 20.0, 100.0],
+        &structs::Metric::Speed
+    );
+    println!("{:?}", points)
+}

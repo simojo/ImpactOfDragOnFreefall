@@ -45,6 +45,7 @@ pub enum DirectionDrag {
     DownNoDrag,
 }
 
+#[derive(Debug)]
 pub enum Metric {
     Speed,
     KineticEnergy,
@@ -52,8 +53,9 @@ pub enum Metric {
     WorkOfDrag,
 }
 
-pub struct DataPoint {
+#[derive(Debug)]
+pub struct DataPoint<'a> {
     pub x: f32,
     pub y: f32,
-    pub metric: Metric,
+    pub metric: &'a Metric,
 }
