@@ -1,34 +1,69 @@
-// import sequtils, sugar, math, structs, data
+mod data;
+mod structs;
 
-// proc getDomain*(x_max: float): seq[float] =
-//   let step = x_max / n
-//   var i = x_max
-//   while i >= 0:
-//     result.add(i)
-//     i -= step
-//   result[len(result) - 1] = 0.0
+pub fn getDomain(&x_max: f32) -> Vec[f32] {
+    let step = *x_max / data::n;
+    let mut i = *x_max;
+    let result = Vec<f32>::new();
+    while i >= 0 {
+        result.push(i);
+        i -= step;
+    }
+    result[result.len() - 1] = 0.0;
+    result
+}
 
-// proc dataSpeed*(domain: seq[float], D: float, x_max: float): seq[DataPoint] =
-//   let range = domain.map(x =>
-//     sqrt(m*g/D*(1-pow(E, 2*D/m*(x-x_max))))
-//   )
-//   return turnIntoDataPoints(domain, range, Metric.Speed)
+pub fn dataSpeed(&domain: Vec[f32], D: f32, x_Max: f32) -> Vec[structs::DataPoint] {
+    data::turnIntoDataPoints(
+        domain,
+        domain
+            .iter()
+            .map(|x| {
+                (data::m * data::g / data::D * ( 1 -  E.pow(2 * data::D / data::m * ( x - x_max )))).sqrt()
+            })
+            .collect(Vec<f32>),
+        structs::Metric.Speed
+    )
+}
 
-// proc dataKineticEnergy*(domain: seq[float], D: float, x_max: float): seq[DataPoint] =
-//   let range = domain.map(x =>
-//     0.5*m*(m*g/D*(1-pow(E, 2*D/m*(x-x_max))))
-//   )
-//   return turnIntoDataPoints(domain, range, Metric.KineticEnergy)
+pub fn dataKineticEnergy(&domain: Vec[f32], D: f32, x_Max: f32) -> Vec[structs::DataPoint] {
+    data::turnIntoDataPoints(
+        domain,
+        domain
+            .iter()
+            .map(|x| {
+                // 0.5*m*(m*g/D*(1-pow(E, 2*D/m*(x-x_max))))
+                x // FIXME
+            })
+            .collect(Vec<f32>),
+        structs::Metric.KineticEnergy
+    )
+}
 
-// proc dataPotentialEnergy*(domain: seq[float], D: float, x_max: float): seq[DataPoint] =
-//   let range = domain.map(x =>
-//     m*g*x
-//   )
-//   return turnIntoDataPoints(domain, range, Metric.PotentialEnergy)
+pub fn dataPotentialEnergy(&domain: Vec[f32], D: f32, x_Max: f32) -> Vec[structs::DataPoint] {
+    data::turnIntoDataPoints(
+        domain,
+        domain
+            .iter()
+            .map(|x| {
+               // m*g*x
+               x // FIXME
+            })
+            .collect(Vec<f32>),
+        structs::Metric.PotentialEnergy
+    )
+}
 
-// proc dataWork*(domain: seq[float], D: float, x_max: float): seq[DataPoint] =
-//   let range = domain.map(x =>
-//     m*g*(x-x_max)-m^2*g/(2*D)*(pow(E, 2*D*(x-x_max)/m)-1)
-//   )
-//   return turnIntoDataPoints(domain, range, Metric.WorkOfDrag)
-
+pub fn dataWork(&domain: Vec[f32], D: f32, x_Max: f32) -> Vec[structs::DataPoint] {
+    data::turnIntoDataPoints(
+        domain,
+        domain
+            .iter()
+            .map(|x| {
+               // m*g*(x-x_max)-m^2*g/(2*D)*(pow(E, 2*D*(x-x_max)/m)-1)
+               x // FIXME
+            })
+            .collect(Vec<f32>),
+        structs::Metric.WorkOfDrag
+    )
+}

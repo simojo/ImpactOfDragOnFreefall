@@ -7,7 +7,7 @@ pub const A_1: f32 = 1.80;
 pub const A_2: f32 = 3.60e-2;
 pub const A_3: f32 = 4.20e-4;
 
-pub fn turn_into_data_points(xs: Vec<f32>, ys: Vec<f32>, metric: &structs::Metric) -> Vec<structs::DataPoint> {
+pub fn turn_into_data_points(&xs: Vec<f32>, &ys: Vec<f32>, metric: &structs::Metric) -> Vec<structs::DataPoint> {
     xs
         .iter()
         .zip(ys

@@ -44,9 +44,9 @@ fn main() {
         }
     }
 
-    let points = turn_into_data_points(
-        vec![5.0, 6.0, 10.0],
-        vec![10.0, 20.0, 100.0],
+    let points = data::turn_into_data_points(
+        &vec![5.0, 6.0, 10.0],
+        &vec![10.0, 20.0, 100.0],
         &structs::Metric::Speed
     );
     println!("{:?}", points)
